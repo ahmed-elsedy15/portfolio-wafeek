@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-ink: 10 14 20;
+  --color-ink-raised: 21 28 37;
+  --color-ink-line: 173 187 201;
+  --color-paper: 242 244 247;
+  --color-mist: 166 177 189;
+  --color-gold: 222 174 91;
+  --color-gold-soft: 240 199 123;
+  --color-teal: 100 210 190;
+  --color-teal-soft: 142 232 211;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --color-ink: 247 244 238;
+  --color-ink-raised: 255 253 248;
+  --color-ink-line: 17 20 25;
+  --color-paper: 23 25 29;
+  --color-mist: 98 106 114;
+  --color-gold: 167 115 45;
+  --color-gold-soft: 135 92 32;
+  --color-teal: 20 120 102;
+  --color-teal-soft: 12 107 91;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  background-color: rgb(var(--color-ink));
+  color: rgb(var(--color-paper));
+}
+
+::selection {
+  background-color: rgb(var(--color-gold));
+  color: rgb(var(--color-ink));
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgb(var(--color-teal));
+  outline-offset: 3px;
+}
+
+html[dir="rtl"] {
+  --font-display: var(--font-display-ar);
+  --font-body: var(--font-body-ar);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Film grain overlay, used behind a low-opacity absolute div */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Hide the native cursor only where JS has confirmed a fine pointer is present */
+html.has-custom-cursor,
+html.has-custom-cursor a,
+html.has-custom-cursor button {
+  cursor: none;
+}
